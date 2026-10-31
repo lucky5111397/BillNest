@@ -1,2 +1,2 @@
-// Module boundary: Tax Rules Engine (Deferred to Phase 2)
-export {};
+export * from './taxes.controller';
+export * from './taxes.routes';

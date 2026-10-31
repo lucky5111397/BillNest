@@ -10,6 +10,7 @@ export const envSchema = z
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     PORT: z.coerce.number().int().positive().default(4000),
     CORS_ORIGIN: z.string().default('http://localhost:5173'),
+    JWT_SECRET: z.string().default('brightloop-jwt-default-super-secret-key-32-chars-min'),
     MONGODB_URI: z
       .string()
       .trim()

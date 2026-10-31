@@ -1,2 +1,2 @@
-// Module boundary: Pricing Plans (Deferred to Phase 2)
-export {};
+export * from './plans.controller';
+export * from './plans.routes';

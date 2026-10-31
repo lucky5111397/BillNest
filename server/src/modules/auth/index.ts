@@ -1,2 +1,2 @@
-// Module boundary: Auth (Deferred to Phase 1)
-export {};
+export * from './auth.controller';
+export * from './auth.routes';
