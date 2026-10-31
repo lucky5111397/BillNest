@@ -4,7 +4,7 @@ import { app } from '../src/app';
 import * as databaseModule from '../src/config/database';
 
 describe('Health & Routing Endpoints', () => {
-  it('GET /api/v1/health/live should return 200 OK with process uptime', async () => {
+  it('GET /api/v1/health/live should return 200 OK without depending on database', async () => {
     const res = await request(app).get('/api/v1/health/live');
 
     expect(res.status).toBe(200);
@@ -13,10 +13,12 @@ describe('Health & Routing Endpoints', () => {
     expect(res.body.timestamp).toBeDefined();
   });
 
-  it('GET /api/v1/health/ready should return 200 OK when database is connected', async () => {
+  it('GET /api/v1/health/ready should return 200 OK when MongoDB is connected', async () => {
     vi.spyOn(databaseModule, 'checkDatabaseConnection').mockResolvedValueOnce({
       connected: true,
+      status: 'healthy',
       latencyMs: 5,
+      readyState: 1,
     });
 
     const res = await request(app).get('/api/v1/health/ready');
@@ -24,12 +26,15 @@ describe('Health & Routing Endpoints', () => {
     expect(res.status).toBe(200);
     expect(res.body.status).toBe('ok');
     expect(res.body.dependencies.database.status).toBe('healthy');
+    expect(res.body.dependencies.database.latencyMs).toBe(5);
   });
 
-  it('GET /api/v1/health/ready should return 503 Service Unavailable when database is disconnected', async () => {
+  it('GET /api/v1/health/ready should return 503 Service Unavailable when MongoDB is disconnected', async () => {
     vi.spyOn(databaseModule, 'checkDatabaseConnection').mockResolvedValueOnce({
       connected: false,
-      error: 'Connection refused',
+      status: 'down',
+      readyState: 0,
+      error: 'MongoDB is not connected',
     });
 
     const res = await request(app).get('/api/v1/health/ready');
@@ -37,6 +42,7 @@ describe('Health & Routing Endpoints', () => {
     expect(res.status).toBe(503);
     expect(res.body.status).toBe('degraded');
     expect(res.body.dependencies.database.status).toBe('down');
+    expect(res.body.dependencies.database.error).toBe('MongoDB is not connected');
   });
 
   it('GET /api/v1 should return API metadata and endpoints', async () => {

@@ -62,16 +62,16 @@ export function DashboardPage() {
               <CardTitle className="text-base font-semibold">Persistence Layer</CardTitle>
               <Database className="h-5 w-5 text-indigo-600" />
             </div>
-            <CardDescription>PostgreSQL + Prisma ORM</CardDescription>
+            <CardDescription>MongoDB Atlas + Mongoose</CardDescription>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground space-y-2">
             <p>
-              Local Docker PostgreSQL container with strict localhost binding, automated
-              healthchecks, and type-safe migrations.
+              Scalable MongoDB Atlas cloud cluster with centralized Mongoose connection manager,
+              dynamic connection pooling, and non-blocking health checks.
             </p>
             <div className="pt-2 flex items-center gap-1.5 text-xs text-slate-700 font-medium">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span>ACID relational guarantees</span>
+              <span>Document model & transactions</span>
             </div>
           </CardContent>
         </Card>
