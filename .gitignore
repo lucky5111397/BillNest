@@ -24,7 +24,8 @@ coverage/
 
 # Allow example env files
 !.env.example
-!apps/*/.env.example
+!client/.env.example
+!server/.env.example
 
 # Logs
 logs/
@@ -55,5 +56,6 @@ temp/
 .stylelintcache
 .turbo/
 .cache/
+.playwright-mcp/
 tsconfig.tsbuildinfo
 

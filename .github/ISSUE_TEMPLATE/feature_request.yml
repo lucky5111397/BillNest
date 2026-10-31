@@ -39,9 +39,9 @@ body:
       label: Scope
       description: Which area does this feature impact?
       options:
-        - 'Frontend (apps/web)'
-        - 'Backend (apps/api)'
-        - 'Full Stack (apps/web & apps/api)'
+        - 'Frontend (client)'
+        - 'Backend (server)'
+        - 'Full Stack (client & server)'
         - 'Database / Schema'
         - 'DevOps / Infrastructure'
     validations:

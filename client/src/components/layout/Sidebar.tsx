@@ -26,7 +26,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { title: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { title: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { title: 'Customers', href: '/customers', icon: Users, phase: 'P2' },
   { title: 'Products & Variants', href: '/products', icon: Package, phase: 'P2' },
   { title: 'Plans & Pricing', href: '/plans', icon: Layers, phase: 'P2' },
@@ -88,7 +88,13 @@ export function Sidebar() {
       </nav>
 
       {/* Footer Info */}
-      <div className="p-4 border-t border-border bg-muted/30">
+      <div className="p-4 border-t border-border bg-muted/30 space-y-2">
+        <NavLink
+          to="/"
+          className="text-xs text-muted-foreground hover:text-foreground flex items-center justify-between transition-colors px-1 py-0.5 rounded hover:bg-accent"
+        >
+          <span>← Back to Landing Page</span>
+        </NavLink>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <ShieldCheck className="h-4 w-4 text-emerald-600" />

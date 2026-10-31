@@ -61,7 +61,7 @@ flowchart TD
 
 ## 3. Tier Responsibilities
 
-### 3.1 Frontend Tier (`apps/web`)
+### 3.1 Frontend Tier (`client`)
 
 - **Technology**: React 18/19, Vite, TypeScript, Tailwind CSS, shadcn/ui components, TanStack Query, React Router, Lucide icons.
 - **Responsibilities**:
@@ -70,7 +70,7 @@ flowchart TD
   - Server-state caching, optimistic updates, and background refetching via TanStack Query.
   - Schema-driven client form validation matching backend contracts.
 
-### 3.2 Backend Tier (`apps/api`)
+### 3.2 Backend Tier (`server`)
 
 - **Technology**: Node.js, Express, TypeScript, Zod schema validation, Prisma ORM.
 - **Responsibilities**:
@@ -98,6 +98,6 @@ flowchart TD
 
 ## 4. Module Boundaries & Communication Rules
 
-1. Modules inside `apps/api/src/modules/` must keep domain models, controllers, and services scoped within their own folder.
+1. Modules inside `server/src/modules/` must keep domain models, controllers, and services scoped within their own folder.
 2. Cross-module operations must go through exposed domain service functions, never directly reaching into another module's internal repository logic.
 3. Database transactions that span multiple modules must be orchestrated at the service boundary.

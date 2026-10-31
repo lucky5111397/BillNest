@@ -3,6 +3,7 @@ dist/
 build/
 coverage/
 .turbo/
+.playwright-mcp/
 package-lock.json
 *.log
 

@@ -4,7 +4,8 @@
   "private": true,
   "description": "Brightloop Subscription Management System - Modular Monolith",
   "workspaces": [
-    "apps/*"
+    "client",
+    "server"
   ],
   "engines": {
     "node": ">=20.0.0",
@@ -12,8 +13,9 @@
   },
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
-    "dev:web": "npm run dev --workspace=apps/web",
-    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=client",
+    "dev:api": "npm run dev --workspace=server",
+    "db:generate": "npm run db:generate --workspace=server",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
