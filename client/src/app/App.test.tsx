@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import App from './App';
 
-describe('BillNest Phase 1 Application Suite', () => {
+describe('Billit Application Suite', () => {
   beforeEach(() => {
     // Reset path before each test
     window.history.pushState({}, '', '/');
@@ -12,8 +12,8 @@ describe('BillNest Phase 1 Application Suite', () => {
     it('renders the dark mode landing page, brand identity, and hero section', () => {
       render(<App />);
 
-      // BillNest Brand Identity
-      expect(screen.getByText('BillNest')).toBeInTheDocument();
+      // Billit Brand Identity
+      expect(screen.getByText('Billit')).toBeInTheDocument();
       expect(screen.getByText('Workspace')).toBeInTheDocument();
 
       // Primary Hero Headline and Supporting Text
@@ -24,7 +24,7 @@ describe('BillNest Phase 1 Application Suite', () => {
       ).toBeInTheDocument();
 
       // Functional CTA
-      expect(screen.getByRole('link', { name: /Explore BillNest/i })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /Explore Billit/i })).toBeInTheDocument();
 
       // 3D Carousel sample subscriptions
       expect(screen.getByText('Netflix')).toBeInTheDocument();
@@ -242,6 +242,28 @@ describe('BillNest Phase 1 Application Suite', () => {
       expect(screen.getByText('ERROR 404: ROUTE NOT FOUND')).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /Public Landing/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /Revenue Dashboard/i })).toBeInTheDocument();
+    });
+  });
+
+  describe('Dedicated React Router DOM Pages', () => {
+    it('renders the dedicated Pricing page when navigating to /pricing', () => {
+      window.history.pushState({}, '', '/pricing');
+      render(<App />);
+
+      expect(screen.getByText(/Billing Plans for Scale\./i)).toBeInTheDocument();
+      expect(screen.getByText('Detailed Plan Feature')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Growth Plan' })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Enterprise Plan' })).toBeInTheDocument();
+    });
+
+    it('renders the dedicated FAQ page when navigating to /faq', () => {
+      window.history.pushState({}, '', '/faq');
+      render(<App />);
+
+      expect(screen.getByText(/Questions & Architecture\./i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/Search questions by topic/i)).toBeInTheDocument();
+      expect(screen.getByText('Billing & Cadences')).toBeInTheDocument();
+      expect(screen.getByText('Payment Reconciliation')).toBeInTheDocument();
     });
   });
 });

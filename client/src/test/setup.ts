@@ -16,3 +16,17 @@ if (typeof window !== 'undefined' && !window.matchMedia) {
     }),
   });
 }
+
+// Polyfill ResizeObserver for jsdom test environment
+if (typeof window !== 'undefined' && !window.ResizeObserver) {
+  window.ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
+}
+
+// Polyfill Canvas getContext for jsdom test environment
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = () => null;
+}
