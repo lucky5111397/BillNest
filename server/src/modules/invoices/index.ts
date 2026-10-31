@@ -1,2 +1,2 @@
-// Module boundary: Invoices & Recurring Invoicing (Deferred to Phase 3)
-export {};
+export * from './invoices.controller';
+export * from './invoices.routes';

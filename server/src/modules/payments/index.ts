@@ -1,2 +1,2 @@
-// Module boundary: Manual Payments & Allocations (Deferred to Phase 3)
-export {};
+export * from './payments.controller';
+export * from './payments.routes';

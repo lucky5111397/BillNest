@@ -1,2 +1,2 @@
-// Module boundary: Subscriptions Lifecycle (Deferred to Phase 3)
-export {};
+export * from './subscriptions.controller';
+export * from './subscriptions.routes';

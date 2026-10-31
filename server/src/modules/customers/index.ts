@@ -1,2 +1,2 @@
-// Module boundary: Customers (Deferred to Phase 2)
-export {};
+export * from './customers.controller';
+export * from './customers.routes';

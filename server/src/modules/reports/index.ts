@@ -1,2 +1,2 @@
-// Module boundary: Reports & Analytics (Deferred to Phase 4)
-export {};
+export * from './reports.controller';
+export * from './reports.routes';

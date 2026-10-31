@@ -1,2 +1,2 @@
-// Module boundary: Discounts Engine (Deferred to Phase 2)
-export {};
+export * from './discounts.controller';
+export * from './discounts.routes';
