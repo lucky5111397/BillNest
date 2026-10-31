@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Brightloop Architecture Discussions
+    url: https://github.com/
+    about: Please consult the architecture documentation in docs/ before proposing structural modifications.

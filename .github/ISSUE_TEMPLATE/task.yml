@@ -1,0 +1,53 @@
+name: 'Task'
+description: 'A planned engineering task, refactor, setup, or technical chore'
+title: '[Task]: '
+labels: ['type: task']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for discrete engineering tasks, maintenance, migrations, or testing chores.
+  - type: input
+    id: objective
+    attributes:
+      label: Objective
+      description: Concise statement of what this task accomplishes.
+      placeholder: 'e.g. Implement seed script for initial roles and tax rates'
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why is this work needed and what architectural considerations apply?
+      placeholder: 'Provide context or link to related architectural decisions...'
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: Specific code, tests, or documentation artifacts produced.
+      placeholder: |
+        - Seed script in apps/api/prisma/seed.ts
+        - Test script verifying seeded data
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What must pass or be verified for completion?
+      placeholder: |
+        - [ ] All unit and integration tests pass
+        - [ ] TypeScript typecheck clean
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Associated issues or preceding tasks.
+      placeholder: 'Relates to issue #...'
+    validations:
+      required: false

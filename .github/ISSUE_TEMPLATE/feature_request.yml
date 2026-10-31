@@ -1,0 +1,56 @@
+name: 'Feature Request'
+description: 'Propose a new feature, capability, or user-facing improvement'
+title: '[Feature]: '
+labels: ['type: feature']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please outline the proposed feature and how it aligns with Brightloop's product requirements.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem, limitation, or workflow gap are we addressing?
+      placeholder: 'Describe the pain point or missing capability...'
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented.
+      placeholder: 'Detailed description of the proposed solution...'
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Specific conditions that must be satisfied for this feature to be considered complete.
+      placeholder: |
+        - [ ] User can view subscription renewal date
+        - [ ] Automated invoice is generated upon renewal
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: Which area does this feature impact?
+      options:
+        - 'Frontend (apps/web)'
+        - 'Backend (apps/api)'
+        - 'Full Stack (apps/web & apps/api)'
+        - 'Database / Schema'
+        - 'DevOps / Infrastructure'
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies / Blockers
+      description: Any prerequisites, dependent services, or other tasks that must complete first.
+      placeholder: 'e.g. Depends on database migration for customer billing profile'
+    validations:
+      required: false

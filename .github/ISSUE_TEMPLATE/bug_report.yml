@@ -1,0 +1,64 @@
+name: 'Bug Report'
+description: 'File a reproducible problem or unexpected error'
+title: '[Bug]: '
+labels: ['type: bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue. Please provide clear details so we can reproduce and fix it.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A concise description of the bug.
+      placeholder: 'e.g. Health readiness endpoint returns 500 when database is down'
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Reproduction Steps
+      description: Exact steps to reproduce the issue.
+      placeholder: |
+        1. Run `npm run dev:api`
+        2. Make GET request to `/api/v1/health/ready`
+        3. Observe response
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behaviour
+    attributes:
+      label: Expected Behaviour
+      description: What you expected to happen.
+      placeholder: 'Endpoint should return structured JSON with degradation status code.'
+    validations:
+      required: true
+  - type: textarea
+    id: actual_behaviour
+    attributes:
+      label: Actual Behaviour
+      description: What actually happened instead.
+      placeholder: 'Uncaught exception was logged without structured JSON payload.'
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node.js version, browser (if frontend), database version.
+      value: |
+        - OS: 
+        - Node version: 
+        - Browser (if applicable): 
+        - Database version:
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / Logs / Screenshots
+      description: Stack traces, logs, error responses, or screenshots.
+      placeholder: 'Paste relevant log traces or error responses here'
+    validations:
+      required: false
