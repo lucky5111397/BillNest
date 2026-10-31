@@ -15,7 +15,7 @@
     "dev": "npm run dev --workspaces --if-present",
     "dev:web": "npm run dev --workspace=client",
     "dev:api": "npm run dev --workspace=server",
-    "db:generate": "npm run db:generate --workspace=server",
+    "db:check": "npm run db:check --workspace=server",
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",

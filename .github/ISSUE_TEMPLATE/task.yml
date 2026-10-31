@@ -29,7 +29,7 @@ body:
       label: Deliverables
       description: Specific code, tests, or documentation artifacts produced.
       placeholder: |
-        - Seed script in server/prisma/seed.ts
+        - Seed script in server/src/scripts/seed.ts
         - Test script verifying seeded data
     validations:
       required: true

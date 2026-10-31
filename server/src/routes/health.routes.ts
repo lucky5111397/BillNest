@@ -16,7 +16,7 @@ healthRouter.get('/live', (_req: Request, res: Response) => {
 });
 
 /**
- * Readiness Probe: Verifies critical infrastructure dependencies (PostgreSQL).
+ * Readiness Probe: Verifies critical infrastructure dependencies (MongoDB Atlas).
  * GET /api/v1/health/ready
  */
 healthRouter.get('/ready', async (_req: Request, res: Response) => {

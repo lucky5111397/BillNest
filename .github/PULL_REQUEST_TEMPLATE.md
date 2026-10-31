@@ -40,7 +40,7 @@ Paste command outputs or logs here
 ## Database / Migration Impact
 
 - [ ] No database changes
-- [ ] Prisma schema updated (migration generated and tested locally)
+- [ ] Database schema or Mongoose models updated (tested locally)
 - [ ] Backward compatibility maintained
 
 ## Documentation Updates

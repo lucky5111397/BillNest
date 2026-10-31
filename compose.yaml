@@ -1,33 +1,13 @@
-# Brightloop Subscription Management System - Local Development Services
-# Usage:
-#   Start database:  docker compose up -d (or docker-compose up -d)
-#   Stop database:   docker compose down (or docker-compose down)
-#   View logs:       docker compose logs -f (or docker-compose logs -f)
-#   Reset volume:    docker compose down -v (or docker-compose down -v)
-
-name: brightloop
-
-services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: brightloop-postgres
-    restart: unless-stopped
-    ports:
-      # Bind exclusively to localhost for local development security
-      - '127.0.0.1:5432:5432'
-    environment:
-      POSTGRES_USER: brightloop_dev
-      POSTGRES_PASSWORD: brightloop_dev_password
-      POSTGRES_DB: brightloop_dev
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U brightloop_dev -d brightloop_dev']
-      interval: 5s
-      timeout: 5s
-      retries: 5
-      start_period: 5s
-
-volumes:
-  postgres_data:
-    name: brightloop_postgres_data
+# BillNest — Subscription Management System
+# Database Architecture: MongoDB Atlas Cloud (Primary)
+#
+# NOTICE:
+# The primary database strategy for BillNest is MongoDB Atlas.
+# Day-to-day development and testing connect to MongoDB Atlas clusters via MONGODB_URI.
+# No local database container is required for standard development or CI execution.
+#
+# NOTE ON LOCAL DOCKER ALTERNATIVE:
+# If an offline local MongoDB container is used for development instead of Atlas,
+# be aware that multi-document ACID transactions (required by the billing and subscription engine)
+# require a replica-set-capable deployment (e.g., --replSet rs0). Standalone MongoDB containers
+# do NOT support multi-document transactions.
