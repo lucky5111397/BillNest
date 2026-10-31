@@ -47,3 +47,33 @@
       'calt' 1;
   }
 }
+
+@layer utilities {
+  .perspective-800 {
+    perspective: 800px;
+    -webkit-perspective: 800px;
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+  }
+  .perspective-1200 {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-3d-animated {
+    animation: none !important;
+    transition: none !important;
+  }
+}

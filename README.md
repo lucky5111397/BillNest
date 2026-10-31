@@ -27,8 +27,8 @@ Modern B2B and SaaS businesses require adaptable billing operations that support
 
 Brightloop follows a **Modular Monolith** architecture:
 
-- `apps/web`: Single-page client dashboard application.
-- `apps/api`: RESTful versioned API service (`/api/v1`) with isolated domain modules.
+- `client`: Single-page client dashboard application.
+- `server`: RESTful versioned API service (`/api/v1`) with isolated domain modules.
 - `PostgreSQL`: Relational persistence layer ensuring transactional ACID guarantees.
 
 For full architectural details, see [System Overview](docs/architecture/system-overview.md) and [ADR 0001: Modular Monolith](docs/architecture/decisions/0001-modular-monolith.md).
@@ -39,27 +39,26 @@ For full architectural details, see [System Overview](docs/architecture/system-o
 
 ```
 /
-├── apps/
-│   ├── web/                     # React + Vite + Tailwind + shadcn/ui SPA
-│   │   ├── src/
-│   │   │   ├── app/             # Application entry and providers
-│   │   │   ├── components/      # UI components & dashboard layout shell
-│   │   │   ├── features/        # Domain features (dashboard, customers, etc.)
-│   │   │   ├── lib/             # Utilities and API client abstraction
-│   │   │   └── styles/          # Tailwind and global design tokens
-│   │   └── package.json
-│   │
-│   └── api/                     # Node.js + Express + TypeScript API service
-│       ├── prisma/              # Prisma schema and migrations
-│       ├── src/
-│       │   ├── config/          # Zod environment parsing and configuration
-│       │   ├── middleware/      # Error, logger, and not-found middlewares
-│       │   ├── modules/         # Domain business modules
-│       │   ├── routes/          # Versioned routing and health probes
-│       │   ├── app.ts           # Express application setup
-│       │   └── server.ts        # Server HTTP listener bootstrap
-│       ├── tests/               # Unit and integration tests
-│       └── package.json
+├── client/                      # React + Vite + Tailwind + shadcn/ui SPA
+│   ├── src/
+│   │   ├── app/                 # Application entry and providers
+│   │   ├── components/          # UI components & dashboard layout shell
+│   │   ├── features/            # Domain features (landing, dashboard, etc.)
+│   │   ├── lib/                 # Utilities and API client abstraction
+│   │   └── styles/              # Tailwind and global design tokens
+│   └── package.json
+│
+├── server/                      # Node.js + Express + TypeScript API service
+│   ├── prisma/                  # Prisma schema and migrations
+│   ├── src/
+│   │   ├── config/              # Zod environment parsing and configuration
+│   │   ├── middleware/          # Error, logger, and not-found middlewares
+│   │   ├── modules/             # Domain business modules
+│   │   ├── routes/              # Versioned routing and health probes
+│   │   ├── app.ts               # Express application setup
+│   │   └── server.ts            # Server HTTP listener bootstrap
+│   ├── tests/                   # Unit and integration tests
+│   └── package.json
 │
 ├── docs/                        # Architecture, product specs, and workflows
 ├── .github/                     # Issue forms, PR templates, CI workflow, Dependabot
@@ -108,18 +107,20 @@ Copy example environment templates for each workspace:
 
 ```bash
 # Backend environment
-cp apps/api/.env.example apps/api/.env
+cp server/.env.example server/.env
 
 # Frontend environment
-cp apps/web/.env.example apps/web/.env
+cp client/.env.example client/.env
 ```
 
 ### 6.4 Initialize Database Schema
 
 ```bash
 # Run Prisma migrations and generate Prisma Client
-npm run db:generate --workspace=apps/api
-npm run db:push --workspace=apps/api
+npm run db:generate
+# or:
+npm run db:generate --workspace=server
+npm run db:push --workspace=server
 ```
 
 ### 6.5 Launch Development Servers
