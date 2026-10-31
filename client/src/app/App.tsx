@@ -23,32 +23,44 @@ import { PortalSupportPage } from '@/features/customer-portal/PortalSupportPage'
 // Authentication Pages & Provider
 import {
   AuthProvider,
-  LoginPage,
   RegisterPage,
   ForgotPasswordPage,
   ResetPasswordPage,
 } from '@/features/auth';
 
-// Public Landing Page & Error Handling
+// Public Landing & Marketing Pages
 import { LandingPage } from '@/features/landing/LandingPage';
+import { PricingPage } from '@/features/pricing/PricingPage';
+import { FaqPage } from '@/features/faq/FaqPage';
+
+// Custom redesigned auth pages
+import LoginPage from '@/features/auth/LoginPage';
+import SignupPage from '@/features/auth/SignupPage';
+
+// UI enhancements
+import { SmoothCursor } from '@/components/ui/smooth-cursor';
 import { NotFoundPage } from '@/components/layout/NotFoundPage';
 
 export function App() {
   return (
     <Providers>
+      <SmoothCursor />
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            {/* Public Landing Page */}
+            {/* Public Landing & Marketing Pages */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/faq" element={<FaqPage />} />
 
             {/* Authentication Routes */}
-            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/auth/login" element={<Navigate to="/login" replace />} />
             <Route path="/auth/register" element={<RegisterPage />} />
             <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
-            <Route path="/login" element={<Navigate to="/auth/login" replace />} />
-            <Route path="/register" element={<Navigate to="/auth/register" replace />} />
+            <Route path="/register" element={<Navigate to="/signup" replace />} />
 
             {/* Operational Application Routes (Admin & Revenue Core Shell) */}
             <Route path="/dashboard" element={<OperationalShell />}>
@@ -61,52 +73,22 @@ export function App() {
               <Route path="staff-and-roles" element={<StaffRolesPage />} />
               <Route path="reports" element={<ReportsPage />} />
 
-              {/* Backwards Compatibility / Friendly Route Aliases */}
-              <Route
-                path="subscriptions"
-                element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />}
-              />
-              <Route
-                path="quotations"
-                element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />}
-              />
-              <Route
-                path="invoices"
-                element={<Navigate to="/dashboard/billing-and-invoices" replace />}
-              />
-              <Route
-                path="payments"
-                element={<Navigate to="/dashboard/payments-and-bank-matcher" replace />}
-              />
-              <Route
-                path="products"
-                element={<Navigate to="/dashboard/products-and-plans" replace />}
-              />
-              <Route
-                path="plans"
-                element={<Navigate to="/dashboard/products-and-plans" replace />}
-              />
-              <Route
-                path="taxes"
-                element={<Navigate to="/dashboard/taxes-and-discounts" replace />}
-              />
-              <Route
-                path="discounts"
-                element={<Navigate to="/dashboard/taxes-and-discounts" replace />}
-              />
+              {/* Backwards Compatibility Route Aliases */}
+              <Route path="subscriptions" element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />} />
+              <Route path="quotations" element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />} />
+              <Route path="invoices" element={<Navigate to="/dashboard/billing-and-invoices" replace />} />
+              <Route path="payments" element={<Navigate to="/dashboard/payments-and-bank-matcher" replace />} />
+              <Route path="products" element={<Navigate to="/dashboard/products-and-plans" replace />} />
+              <Route path="plans" element={<Navigate to="/dashboard/products-and-plans" replace />} />
+              <Route path="taxes" element={<Navigate to="/dashboard/taxes-and-discounts" replace />} />
+              <Route path="discounts" element={<Navigate to="/dashboard/taxes-and-discounts" replace />} />
               <Route path="staff" element={<Navigate to="/dashboard/staff-and-roles" replace />} />
               <Route path="team" element={<Navigate to="/dashboard/staff-and-roles" replace />} />
-              <Route
-                path="customers"
-                element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />}
-              />
-              <Route
-                path="settings"
-                element={<Navigate to="/dashboard/products-and-plans" replace />}
-              />
+              <Route path="customers" element={<Navigate to="/dashboard/subscriptions-and-quotes" replace />} />
+              <Route path="settings" element={<Navigate to="/dashboard/products-and-plans" replace />} />
             </Route>
 
-            {/* Customer Self-Service Portal Routes (Independent Shell) */}
+            {/* Customer Self-Service Portal Routes */}
             <Route path="/portal" element={<PortalShell />}>
               <Route index element={<Navigate to="/portal/overview" replace />} />
               <Route path="overview" element={<CustomerPortalOverviewPage />} />
@@ -116,7 +98,7 @@ export function App() {
               <Route path="support" element={<PortalSupportPage />} />
             </Route>
 
-            {/* 404 Route Not Found Page */}
+            {/* 404 Not Found */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
@@ -124,4 +106,5 @@ export function App() {
     </Providers>
   );
 }
+
 export default App;
